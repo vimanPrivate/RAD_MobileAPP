@@ -1,15 +1,16 @@
 class GenaralResponse {
-  final int result;
+  //final int result;
   var data;
   final String message;
 
-  GenaralResponse({this.result=1, this.data = null, this.message = ''});
+  //GenaralResponse({ this.data = null, this.message = ''});
+  GenaralResponse({ this.message = ''});
 
   factory GenaralResponse.fromJson(Map<String, dynamic> responsejson) {
-    final result   = responsejson['result'] as int;
     final message = responsejson['message'] as String;
-    final data    = responsejson['data'] ?? "";
+    //final data    = responsejson['data'] ?? "";
 
-    return GenaralResponse(result: result, message: message, data: data);
+    //return GenaralResponse(message: message, data: data);
+    return GenaralResponse(message: message);
   }
 }
