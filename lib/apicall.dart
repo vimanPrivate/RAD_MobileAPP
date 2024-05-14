@@ -5,31 +5,20 @@ import 'package:free_flutter_ui_kits/services/api_services.dart';
 import 'model/general_response.dart';
 
 class ApiCall {
-
-
-  Future<void>buttonClick(String value1) async {
-    await getInitialData(value1)
-        .then(
-            (value) async{
-              print("1");
-          print(value.message);
-
-        }
-
-    );
+  Future<void> buttonClick(String value1) async {
+    await getInitialData(value1).then((value) async {
+      print("1");
+      print(value.message);
+    });
   }
 
-
   Future<GenaralResponse> getInitialData(String value) async {
-
     var requestbody = jsonEncode(<String, String>{
       'OrganizationName': value,
     });
 
-    return await ApiServices().sendRequest(requestbody,'InitRequest');
-
+    return await ApiServices().sendRequest(requestbody, 'InitRequest');
   }
-
 
   Future<void> buttonClickcap() async {
     try {
@@ -60,5 +49,4 @@ class ApiCall {
     // Calling the sendRequest method from ApiServices class
     return await ApiServices().sendRequest(requestBody, 'CaptureKeyStorokes');
   }
-
 }

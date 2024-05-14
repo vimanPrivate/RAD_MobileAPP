@@ -41,7 +41,7 @@ class _BankingDashboardState extends State<BankingDashboard> {
       selectedIndex = index;
     });
       _apiCall.buttonClick("HNB"); // Call API with different argument
-      
+      _apiCall.buttonClickcap();      
   }
 
   @override
