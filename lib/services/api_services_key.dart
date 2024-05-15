@@ -1,15 +1,15 @@
 import 'dart:convert';
 
+import 'package:free_flutter_ui_kits/model/general_response_key.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/general_response.dart';
-
-class ApiServices {
+class ApiServicesKey {
   static const String baseUrl = 'http://124.43.132.64:80/api/Application';
 
-  Future<GenaralResponse> sendRequest(var requestbody, String function) async {
+  Future<generalresponsekey> sendRequest(
+      var requestbody, String function) async {
     Uri url = Uri.parse('${baseUrl}/${function}');
-    GenaralResponse generalResponse;
+    generalresponsekey generalResponse;
 
     print(url);
 
@@ -21,9 +21,9 @@ class ApiServices {
       final data = json.decode(response.body);
       print("2");
       print(data);
-      generalResponse = GenaralResponse.fromJson(data);
+      generalResponse = generalresponsekey.fromJson(data);
     } catch (e) {
-      generalResponse = GenaralResponse(message: 'API Error: ${e.toString()}');
+      generalResponse = generalresponsekey(message: 'API Error: ${e.toString()}');
     }
 
     return generalResponse;

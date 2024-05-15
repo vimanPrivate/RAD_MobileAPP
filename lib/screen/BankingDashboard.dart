@@ -40,8 +40,19 @@ class _BankingDashboardState extends State<BankingDashboard> {
     setState(() {
       selectedIndex = index;
     });
-      _apiCall.buttonClick("HNB"); // Call API with different argument
-      _apiCall.buttonClickcap();      
+    _apiCall.buttonClick("HNB"); // Call API with different argument
+    _apiCall.buttonClickcap(
+      startTime: DateTime.now(),
+      endTime: DateTime.now(),
+      startDate: DateTime.now(),
+      endDate: DateTime.now(),
+      screenName: 'Transfer Screen',
+      isFinalGoal: false,
+      buttonName: 'Transfer Button',
+      sequence: '',
+      property1: '',
+      property2: '',
+    );
   }
 
   @override

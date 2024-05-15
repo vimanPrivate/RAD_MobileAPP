@@ -172,7 +172,18 @@ class BankingHome1State extends State<BankingHome1> {
                                 onTap: () {
                                   _apicall.buttonClick(
                                       "HNB"); // Call API with argument "HNB"
-                                  _apicall.buttonClickcap(); // Call API Capture Key Stroke
+                                  _apicall.buttonClickcap(
+                                    startTime: DateTime.now(),
+                                    endTime: DateTime.now(),
+                                    startDate: DateTime.now(),
+                                    endDate: DateTime.now(),
+                                    screenName: 'Home Screen',
+                                    isFinalGoal: false,
+                                    buttonName: 'Payment Button',
+                                    sequence: '1',
+                                    property1: '',
+                                    property2: '',
+                                  );
                                 },
                               ),
                               SizedBox(width: 10),
@@ -208,7 +219,18 @@ class BankingHome1State extends State<BankingHome1> {
                                 onTap: () {
                                   _apicall.buttonClick(
                                       "HNB"); // Call API with argument "HNB"
-                                  _apicall.buttonClickcap(); // Call API Capture Key Stroke
+                                  _apicall.buttonClickcap(
+                                    startTime: DateTime.now(),
+                                    endTime: DateTime.now(),
+                                    startDate: DateTime.now(),
+                                    endDate: DateTime.now(),
+                                    screenName: 'Home Screen',
+                                    isFinalGoal: false,
+                                    buttonName: 'Transfer Button',
+                                    sequence: '1',
+                                    property1: '',
+                                    property2: '',
+                                  );
                                 },
                               ),
                             ],

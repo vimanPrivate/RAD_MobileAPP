@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:free_flutter_ui_kits/services/api_services.dart';
+import 'package:free_flutter_ui_kits/services/api_services_key.dart';
 
 import 'model/general_response.dart';
+import 'model/general_response_key.dart';
 
 class ApiCall {
+  int _sequence = 0; // Initialize sequence counter
   Future<void> buttonClick(String value1) async {
     await getInitialData(value1).then((value) async {
       print("1");
@@ -13,28 +16,54 @@ class ApiCall {
   }
 
   Future<GenaralResponse> getInitialData(String value) async {
-    var requestbody = jsonEncode(<String, String>{
+    var requestBody = jsonEncode(<String, String>{
       'OrganizationName': value,
     });
-
-    return await ApiServices().sendRequest(requestbody, 'InitRequest');
+    print(requestBody);
+    return await ApiServices().sendRequest(requestBody, 'InitRequest');
   }
 
-  Future<void> buttonClickcap() async {
+  Future<void> buttonClickcap({
+    required DateTime startTime,
+    required DateTime endTime,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String screenName,
+    required bool isFinalGoal,
+    required String buttonName,
+    required String property1,
+    required String property2,
+    required String sequence,
+  }) async {
     try {
+      // Increment sequence
+      _sequence++;
+
       // Constructing the request body
       var requestBody = jsonEncode({
-        "StartTime": "22:22:45",
-        "EndTime": "22:22:49",
-        "StartDate": "2024-05-09",
-        "EndDate": "2024-05-09",
-        "ScreenName": "Checking Balance@5555",
-        "IsFinalGoal": false,
-        "ButtonName": "Login",
-        "Sequence": 1,
-        "Property1": "",
-        "Property2": ""
+        "StartTime": startTime.toString(),
+        "EndTime": endTime.toString(),
+        "StartDate": startDate.toString().substring(0, 10),
+        "EndDate": endDate.toString().substring(0, 10),
+        "ScreenName": screenName,
+        "IsFinalGoal": isFinalGoal,
+        "ButtonName": buttonName,
+        "Sequence": _sequence, // Use the incremented sequence
+        "Property1": property1,
+        "Property2": property2
       });
+      print(jsonEncode({
+        "StartTime": startTime.toIso8601String().substring(11, 19),
+        "EndTime": endTime.toIso8601String().substring(11, 19),
+        "StartDate": startDate.toIso8601String().substring(0, 10),
+        "EndDate": endDate.toIso8601String().substring(0, 10),
+        "ScreenName": screenName,
+        "IsFinalGoal": isFinalGoal,
+        "ButtonName": buttonName,
+        "Sequence": _sequence,
+        "Property1": property1,
+        "Property2": property2
+      }));
 
       // Calling the getInitialData method
       var response = await getInitialDatakey(requestBody);
@@ -45,8 +74,10 @@ class ApiCall {
     }
   }
 
-  Future<GenaralResponse> getInitialDatakey(String requestBody) async {
+  Future<generalresponsekey> getInitialDatakey(String requestBody) async {
     // Calling the sendRequest method from ApiServices class
-    return await ApiServices().sendRequest(requestBody, 'CaptureKeyStorokes');
+    return await ApiServicesKey()
+        .sendRequest(requestBody, 'CaptureKeyStorokes');
   }
 }
+
